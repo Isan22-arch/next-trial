@@ -1,7 +1,8 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
               priority
             />
           </a>
+          <div className="flex place-items-center gap-2 p-8 lg:pointer-events-none lg:p-0">
+            Code Mafia
+          </div>
         </div>
       </div>
 
@@ -118,7 +122,19 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
+
+        <Link
+          href="/data_fetching"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+        >
+          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
+            Data-fetching{' '}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+        </Link>
       </div>
     </main>
-  )
+  );
 }
