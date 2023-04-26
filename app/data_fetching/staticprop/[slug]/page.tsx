@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <div>
       <h1>{params.slug}</h1>
-      <Link href="/data_fetching/staticprop">Home</Link>
+      <Link href="/data_fetching">Home</Link>
     </div>
   );
 }

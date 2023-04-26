@@ -2,14 +2,18 @@ import React, { use } from 'react';
 import Link from 'next/link';
 import { Char } from '@/app/types/sample';
 
-async function StatciPropPage() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  const chars: Char = await (
+const getChars = async (): Promise<Char> => {
+  return await (
     await fetch('https://rickandmortyapi.com/api/character', {
       cache: 'force-cache',
       method: 'GET',
     })
   ).json();
+};
+
+async function StatciPropPage() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  const chars = await getChars();
   console.log('static');
 
   return (

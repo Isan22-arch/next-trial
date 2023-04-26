@@ -3,6 +3,10 @@ import Link from 'next/link';
 
 const routes = [
   {
+    name: 'Home',
+    path: '/data_fetching/',
+  },
+  {
     name: 'Server',
     path: '/data_fetching/server',
   },
