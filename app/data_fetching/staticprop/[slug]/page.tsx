@@ -1,15 +1,11 @@
 import Link from 'next/link';
 import { Char } from '@/app/types/sample';
+import { getChars } from '@/app/utils/get-chars';
 
 export async function generateStaticParams() {
-  const chars: Char = await (
-    await fetch('https://rickandmortyapi.com/api/character', {
-      cache: 'force-cache',
-      method: 'GET',
-    })
-  ).json();
-  return chars.results.map((character) => ({
-    slug: character.name.replace(/\s+/g, '-').toLowerCase(),
+  const chars = await getChars();
+  return chars.results.map((char) => ({
+    slug: char.name.replace(/\s+/g, '-').toLowerCase(),
   }));
 }
 

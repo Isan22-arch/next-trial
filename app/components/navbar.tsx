@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import getTime from '../utils/get-time';
 
 const routes = [
   {
@@ -20,15 +21,19 @@ const routes = [
   },
 ];
 
-function Navbar() {
+async function Navbar() {
+  const time = await getTime();
   return (
-    <ul className="flex justify-center gap-3  text-white p-4 border-b-[.5px] border-gray-700">
-      {routes.map((route) => (
-        <li key={route.name}>
-          <Link href={route.path}>{route.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <div className="flex justify-between  text-white p-4 border-b-[.5px] border-gray-700">
+      <ul className="flex justify-start gap-3 flex-grow">
+        {routes.map((route) => (
+          <li key={route.name}>
+            <Link href={route.path}>{route.name}</Link>
+          </li>
+        ))}
+      </ul>
+      <div>{time.datetime}</div>
+    </div>
   );
 }
 

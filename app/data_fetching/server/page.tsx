@@ -1,29 +1,25 @@
 import React, { use } from 'react';
 import Link from 'next/link';
 import { Char } from '@/app/types/sample';
+import { getChars } from '@/app/utils/get-chars';
 
 async function ServerPage() {
   await new Promise((resolve) => setTimeout(resolve, 3000));
-  const characters: Char = await (
-    await fetch('https://rickandmortyapi.com/api/character', {
-      cache: 'no-store',
-      method: 'GET',
-    })
-  ).json();
+  const chars = await getChars('', 'no-store');
   console.log('server');
 
   return (
     <div>
       <h2 className="text-center">ServerPage</h2>
       <ul>
-        {characters.results.map((character) => (
-          <li key={character.id}>
+        {chars.results.map((char) => (
+          <li key={char.id}>
             <Link
-              href={`/data_fetching/staticprop/${character.name}`
+              href={`/data_fetching/staticprop/${char.name}`
                 .replace(/\s+/g, '-')
                 .toLowerCase()}
             >
-              {character.name}
+              {char.name}
             </Link>
           </li>
         ))}

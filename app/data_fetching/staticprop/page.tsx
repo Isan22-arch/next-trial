@@ -1,15 +1,6 @@
 import React, { use } from 'react';
 import Link from 'next/link';
-import { Char } from '@/app/types/sample';
-
-const getChars = async (): Promise<Char> => {
-  return await (
-    await fetch('https://rickandmortyapi.com/api/character', {
-      cache: 'force-cache',
-      method: 'GET',
-    })
-  ).json();
-};
+import { getChars } from '@/app/utils/get-chars';
 
 async function StatciPropPage() {
   await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -20,14 +11,14 @@ async function StatciPropPage() {
     <div>
       <h2 className="text-center">StatciPropPage</h2>
       <ul>
-        {chars.results.map((character) => (
-          <li key={character.id}>
+        {chars.results.map((char) => (
+          <li key={char.id}>
             <Link
-              href={`/data_fetching/staticprop/${character.name}`
+              href={`/data_fetching/staticprop/${char.name}`
                 .replace(/\s+/g, '-')
                 .toLowerCase()}
             >
-              {character.name}
+              {char.name}
             </Link>
           </li>
         ))}
