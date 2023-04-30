@@ -1,12 +1,23 @@
 import Link from 'next/link';
-import { Char } from '@/app/types/sample';
 import { getChars } from '@/app/utils/get-chars';
+import { Metadata } from 'next';
 
 export async function generateStaticParams() {
   const chars = await getChars();
   return chars.results.map((char) => ({
     slug: char.name.replace(/\s+/g, '-').toLowerCase(),
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  return {
+    title: params.slug,
+    description: `this is ${params.slug}'s detail page`,
+  };
 }
 
 export default function Page({ params }: { params: { slug: string } }) {

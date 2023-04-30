@@ -1,18 +1,11 @@
 import React, { Suspense } from 'react';
 import Navbar from '../components/navbar';
+import Spinner from '../components/spinner';
 
 function Layout({ children }: { children: React.ReactNode }) {
-  const skeleton = (
-    <div className="bg-gray-300 rounded overflow-hidden">
-      <div className="h-1 bg-gray-400 animate-pulse"></div>
-      <div className="h-1 bg-gray-400 animate-pulse"></div>
-      <div className="h-1 bg-gray-400 animate-pulse"></div>
-      <div className="h-1 bg-gray-400 animate-pulse"></div>
-    </div>
-  );
   return (
     <>
-      <Suspense fallback={skeleton}>
+      <Suspense fallback={<Spinner />}>
         {/* @ts-expect-error Async Server Component */}
         <Navbar />
       </Suspense>

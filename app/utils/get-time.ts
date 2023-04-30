@@ -20,6 +20,7 @@ type Time = typeof time;
 export default async function getTime() {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const res = await fetch('http://worldtimeapi.org/api/timezone/Japan', {
+    // cache: 'no-store',
     next: { revalidate: 60 },
   });
   const data: Time = await res.json();

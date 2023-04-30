@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import getTime from '../utils/get-time';
+import moment from 'moment';
+// import kanjidate from 'kanjidate';
+// const kanjidate = require('kanjidate');
 
 const routes = [
   {
@@ -23,6 +26,7 @@ const routes = [
 
 async function Navbar() {
   const time = await getTime();
+
   return (
     <div className="flex justify-between  text-white p-4 border-b-[.5px] border-gray-700">
       <ul className="flex justify-start gap-3 flex-grow">
@@ -32,7 +36,7 @@ async function Navbar() {
           </li>
         ))}
       </ul>
-      <div>{time.datetime}</div>
+      <div>{moment(time.datetime).format('YY/MM/DD ddd HH:mm:ss')}</div>
     </div>
   );
 }

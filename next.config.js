@@ -3,6 +3,8 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  output: 'export',
+  swcMinify: true,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
